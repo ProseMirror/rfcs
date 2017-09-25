@@ -20,9 +20,11 @@ with.
 
 Submit a pull request that adds your new file. This is where
 discussion around the RFC will happen. Be prepared to defend and/or
-revise your proposal in response to feedback.
+revise your proposal in response to feedback. When changing the
+proposal, only add new commits, don't rebase or amend existing
+commits, so that people can easily inspect what changed.
 
-When the community has had some time (at least two weeks) to comment
+When the community has had some time (at least a week) to comment
 on the RFC and no more blocking problems are present, the core team
 may decide to accept it and merge it into the repository. Accepting an
 RFC does not imply a promise to actually implement it—ideally, the
@@ -35,3 +37,6 @@ or things that have been discussed before may be rejected right away.
 But even proposals with merit may end up being rejected, for example
 if it is considered out of scope, or introduces problems that can't be
 resolved in the discussion phase.
+
+This approach was inspired by the [Rust RFC
+process](https://github.com/rust-lang/rfcs).
