@@ -1,6 +1,6 @@
 # Summary
 
-The [`EditorState.create`](http://prosemirror.net/docs/ref/#state.EditorState^create) API is a factory that creates instance of `EditorState`. Currently it allows `schema`, `doc`, `selection`, `plugins`, but is missing `storedMarks`. This RFC proposes allowing `storedMarks` to be passed via `EditorState.create`. 
+The [`EditorState.create`](http://prosemirror.net/docs/ref/#state.EditorState^create) API is a factory that creates instance of `EditorState`. Currently it allows `schema`, `doc`, `selection`, `plugins`, but is missing `storedMarks`. This RFC proposes also allowing `storedMarks`. 
 
 
 # Motivation
@@ -14,7 +14,7 @@ const editorState = EditorState.create({ doc });
 editorState.storedMarks = storedMarks;
 ```
 
-Ideally this would be changed to:
+This proposal would change this to:
 
 ```js
 const editorState = EditorState.create({ doc, storedMarks });
@@ -22,7 +22,7 @@ const editorState = EditorState.create({ doc, storedMarks });
 
 # Guide-level explanation
 
-Nothing to explain here, it would work in the same way as other fields passed in `EditorState.create`.
+It would work in the same way as other fields.
 
 # Reference-level explanation
 
