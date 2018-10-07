@@ -100,9 +100,9 @@ such a scenario each is given an opportunity to make a replacement (following
 plugin-order). However unlike `appendTransaction`, a plugin implementing
 `replaceTransaction` will not see the effects from later plugins'
 `replaceTransaction`. This means that a later plugin has the ability to
-completely change the effect of an earlier plugin, and the earlier plugin does
-not consulted. This design keeps the mental-model simple (a pipeline), and
-solves the motivating use-cases.
+completely change the effect of an earlier plugin, and the earlier plugin is not
+consulted. This design keeps the mental-model simple (a pipeline), and solves
+the motivating use-cases.
 
 This design increases the existing significance of plugin ordering, by being
 _another_ consequence to consider.
