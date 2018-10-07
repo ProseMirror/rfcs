@@ -127,7 +127,8 @@ follows:
 
 5. With the final transaction and new editor state, execute the existing
    `appendTransaction` algorithm. For any transaction appended, perform steps
-   1-4.
+   1-4, but do not consult the current plugin for `filterTransaction` or
+   `replaceTransaction`.
 
 ## Return-value to indicate "abort" vs "continue" vs "replace"
 
