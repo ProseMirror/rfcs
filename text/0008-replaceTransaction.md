@@ -162,7 +162,7 @@ that it can be restored by prosemirror-history.
 
 ```js
 replaceTransaction: (tr, oldState, newState) => {
-    const { deletedComments } = CommentPlugin.getState(newState);
+    const { deletedComments } = commentPlugin.getState(newState);
 
     if (deletedComments.length > 0) {
         const newTr = oldState.tr;
