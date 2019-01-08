@@ -73,16 +73,16 @@ The suggestion is to control the wrapping behaviour so that we can have the foll
 
 # Guide-level explanation
 
-One way to accomplish this would be to provide the ability to control the wrapping behaviour of block marks from nodeViews.
+The proposal gives the `MarkSpec` a new getter:
 
-The proposal gives the `NodeView` class a new getter:
-
-**`disableWrapping`**`: boolean` indicates whether `prosemirror-view` uses the wrapping optimisation.
+**`spanning`**`: boolean` indicates whether `prosemirror-view` uses the wrapping optimisation. We will preserve the default behaviour unless its set to `false`.
 
 Implementation details: https://github.com/ProseMirror/prosemirror-view/pull/43
 
 # Drawbacks
 
-When this feature is used, ProseMirror will generate an extra markup needed to wrap each block node with its own block mark.
+When this feature is used, ProseMirror will generate an extra markup needed to wrap each node with its own mark.
 
-Also, since it is expected to work only for block marks, we should make it very clear in ProseMirror documentation.
+# Rationale and alternatives
+
+Originally I though about using mark nodeviews for that, but this feature should be available from HTML serializer when marks don't have a nodeview.
