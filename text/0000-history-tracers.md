@@ -1,6 +1,6 @@
 # Summary
 
-This proposal adds features to the [prosemirror-history](https://prosemirror.net/docs/ref/#history) package that allow you to see when a given step is undone or redone.
+This proposal defines a new, optional, piece of transaction metadata that can be used to trace steps through history undo and redo, or collab rebasing.
 
 # Motivation
 
@@ -8,7 +8,7 @@ The undo history currently strictly concerns itself with the document—undoing 
 
 In some cases, changes in external data are tied to document steps (for example, creating a node for which some metadata is tracked outside of the document), in other cases, the changes are entirely independent of the document.
 
-The current prosemirror-history implementation makes it extremely hard to extend the history in this way. This proposal intends to add functionality to make this easier.
+The current prosemirror-history implementation makes it extremely hard to extend the history in this way. This proposal intends to add functionality to make this easier. Similarly, the way prosemirror-collab can re-apply local steps several times can make it hard to keep track of such steps.
 
 # Guide-level explanation
 
@@ -16,7 +16,11 @@ The current prosemirror-history implementation makes it extremely hard to extend
 
 When you create a transaction that contains some traceable steps, you use the `tracers` metadata key to add this information to the transaction. It holds an array of `Tracer` objects, each of which has an index that points at a step in the transaction, a tag that identifies the kind of tracer it is, and optionally an additional value of arbitrary type that provides further information.
 
+Both the `Tracer` class and the `tracers` metadata key are exported from prosemirror-state.
+
 The undo history stores these tracers along with the steps, and When it creates a transaction that undoes or redoes some steps, it includes the relevant tracers in that transaction. An `event` property on tracers can be used to see what kind of transaction this is—it initially holds `"do"` in the user-created transaction, `"undo"` when the transaction undoes the step, and `"redo"` when it redoes it again.
+
+The collab module, when it rebases local traced steps over remote steps, will first apply the inverse of the steps with an event type of `"rebase-invert"`, and then, after the remote steps (if the step can still be applied) re-apply them with a type of `"rebase-reapply"`.
 
 # Reference-level explanation
 
