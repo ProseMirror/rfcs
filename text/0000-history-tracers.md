@@ -18,6 +18,8 @@ When you create a transaction that contains some traceable steps, you use the `t
 
 Both the `Tracer` class and the `tracers` metadata key are exported from prosemirror-state.
 
+To cover the use case where tracers need to be attached to steps by code that didn't originate those steps, for example when you want undoing the deletion of content that had some metadata associated with it to restore that metadata, plugins support a new hook, `attachTracers`, which is called right after `filterTransaction`, and given a transaction may return an array of additional tracer objects to associate with the transaction.
+
 The undo history stores these tracers along with the steps, and When it creates a transaction that undoes or redoes some steps, it includes the relevant tracers in that transaction. An `event` property on tracers can be used to see what kind of transaction this is—it initially holds `"do"` in the user-created transaction, `"undo"` when the transaction undoes the step, and `"redo"` when it redoes it again.
 
 The collab module, when it rebases local traced steps over remote steps, will first apply the inverse of the steps with an event type of `"rebase-invert"`, and then, after the remote steps (if the step can still be applied) re-apply them with a type of `"rebase-reapply"`.
