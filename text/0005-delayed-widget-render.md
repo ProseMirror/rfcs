@@ -1,6 +1,6 @@
 # Summary
 
-Allow [widget decorations](##view.Decoration^widget) to be rendered when they are drawn in an actual view, rather than requiring their DOM structur to be created when the decoration is created.
+Allow [widget decorations](##view.Decoration^widget) to be rendered when they are drawn in an actual view, rather than requiring their DOM structure to be created when the decoration is created.
 
 # Motivation
 
