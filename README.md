@@ -1,3 +1,5 @@
+**ProseMirror no longer uses the RFC process. Discussing proposed changes in issues and forum threads, without the friction of a formal RFC process, turned out to be a better fit for this project.**
+
 # ProseMirror RFCs
 
 When making substantial changes to the ProseMirror core modules, we
